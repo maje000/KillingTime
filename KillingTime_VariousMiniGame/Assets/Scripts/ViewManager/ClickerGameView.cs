@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Game1View : View
+public class ClickerGameView : View
 {
     [SerializeField] private Button _backButton;
 
@@ -11,6 +11,10 @@ public class Game1View : View
     {
         base.Initialize();
 
-        _backButton.onClick.AddListener(() => ViewManager.ShowLast());
+        _backButton.onClick.AddListener(() =>
+        {
+            GameManager.CloseGame();
+            ViewManager.ShowLast();
+        });
     }
 }

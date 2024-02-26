@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < _games.Length; i++)
         {
             _games[i].Initialize();
+            _games[i]._onGameOverEvent.AddListener(() => {
+                ViewManager.Show<GameResultView>(false);
+            });
             _games[i].Hide();
         }
     }
@@ -31,6 +35,7 @@ public class GameManager : MonoBehaviour
             if (s_instance._games[i] is T tGame)
             {
                 tGame.Show();
+                tGame.Play();
 
                 s_instance._currentGame = tGame;
             }
@@ -41,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
         if (s_instance._currentGame != null)
         {
+            s_instance._currentGame.OnFinishedGame();
             s_instance._currentGame.Hide();
             
             s_instance._currentGame = null;

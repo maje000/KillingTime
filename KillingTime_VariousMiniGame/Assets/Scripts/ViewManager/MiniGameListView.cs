@@ -15,7 +15,7 @@ public class MiniGameListView : View
         _backButton.onClick.AddListener(() => ViewManager.ShowLast());
         _goGame1Button.onClick.AddListener(() =>
         {
-            ViewManager.Show<Game1View>(false);
+            ViewManager.Show<ClickerGameView>();
             GameManager.PlayGame<ClickerGame>();
         });
     }

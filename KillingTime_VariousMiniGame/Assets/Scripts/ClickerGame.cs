@@ -1,13 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ClickerGame : Game
 {
     [SerializeField] private int _score;
     [SerializeField] private float _currentTimeToFlow;
-    UnityEvent onFinishedGame;
+    [SerializeField] private GraphicRaycaster _graphicRaycaster;
+    Vector2[] _positions = new Vector2[] {
+        new Vector3(-330f, -330*2f),
+        new Vector3(-330f, -330*1f),
+        new Vector3(-330f, 330*0f),
+        new Vector3(-330f, 330*1f),
+        new Vector3(-330f, 330*2f),
+        new Vector3(0f, -330*2f),
+        new Vector3(0f, -330*1f),
+        new Vector3(0f, -330*0f),
+        new Vector3(0f, -330*1f),
+        new Vector3(0f, -330*2f),
+        new Vector3(330f, -330*2f),
+        new Vector3(330f, -330*1f),
+        new Vector3(330f, -330*0f),
+        new Vector3(330f, -330*1f),
+        new Vector3(330f, -330*2f),
+        };
 
     public override void Initialize()
     {
@@ -39,7 +56,30 @@ public class ClickerGame : Game
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _score++;
+            List<RaycastResult> results = new();
+            PointerEventData pointerEventData = new PointerEventData(null);
+            pointerEventData.position = Input.mousePosition;
+            _graphicRaycaster.Raycast(pointerEventData, results);
+
+            if (results.Count > 0)
+            {
+                GameObject result = results[0].gameObject;
+                if (result.tag == "TouchPoint")
+                {
+                    _score++;
+                    int positionCount = _positions.Length;
+                    int randomIndex = Random.Range(0, positionCount);
+                    result.GetComponent<RectTransform>().anchoredPosition = _positions[randomIndex];
+                }
+            }
         }
+    }
+
+    private Vector2 GetRandomPosition()
+    {
+        int positionCount = _positions.Length;
+        int randomIndex = Random.Range(0, positionCount);
+
+        return _positions[randomIndex];
     }
 }

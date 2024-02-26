@@ -85,20 +85,6 @@ public class ViewManager : MonoBehaviour
         s_instance._currentView = view;
     }
 
-/// <summary>
-/// 현재 창을 숨김. ShowLast()를 통해 다시 열기
-/// </summary>
-    public static void Hide()
-    {
-        if (s_instance._currentView != null)
-        {
-            s_instance._history.Push(s_instance._currentView);
-            s_instance._currentView.Hide();
-
-            s_instance._currentView = null;
-        }
-    }
-
     public static void ShowLast()
     {
         if (s_instance._history.Count != 0)

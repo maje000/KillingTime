@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public interface iGame
 {
@@ -12,6 +13,8 @@ public abstract class Game : MonoBehaviour, iGame
     /// </summary>
     protected bool _isPlay;
 
+    public UnityEvent _onGameOverEvent;
+
     /// <summary>
     /// 게임 최초 초기화. 
     /// todo::비동기 작업이 있을 경우(리소스 로딩 등), 비동기 처리가 필요함.
@@ -19,15 +22,15 @@ public abstract class Game : MonoBehaviour, iGame
     public virtual void Initialize() => Debug.Log($"Game:: \"{this.GetType().Name}\" is start initialize");
     public virtual void Show()
     {
-        _isPlay = true;
         gameObject.SetActive(true);
     }
     public virtual void Hide()
     {
         _isPlay = false;
-        OnFinishedGame();
         gameObject.SetActive(false);
     }
+
+    public virtual void Play() => _isPlay = true;
 
     /// <summary>
     /// 게임 메카닉스
@@ -52,7 +55,7 @@ public abstract class Game : MonoBehaviour, iGame
         {
             if (IsOver())
             {
-                OnFinishedGame();
+                _onGameOverEvent?.Invoke();
                 _isPlay = false;
             }
 

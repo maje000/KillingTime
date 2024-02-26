@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class ViewManager : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class ViewManager : MonoBehaviour
             _views[i].Hide();
         }
 
-        // ���� ȭ�鼳��
+        // 최초 초기화
         if (_startingView != null)
         {
             Show(_startingView, false);
@@ -81,6 +83,20 @@ public class ViewManager : MonoBehaviour
 
         view.Show();
         s_instance._currentView = view;
+    }
+
+/// <summary>
+/// 현재 창을 숨김. ShowLast()를 통해 다시 열기
+/// </summary>
+    public static void Hide()
+    {
+        if (s_instance._currentView != null)
+        {
+            s_instance._history.Push(s_instance._currentView);
+            s_instance._currentView.Hide();
+
+            s_instance._currentView = null;
+        }
     }
 
     public static void ShowLast()

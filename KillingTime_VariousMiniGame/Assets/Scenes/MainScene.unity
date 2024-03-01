@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -851,6 +851,8 @@ GameObject:
   m_Component:
   - component: {fileID: 786304360}
   - component: {fileID: 786304361}
+  - component: {fileID: 786304363}
+  - component: {fileID: 786304362}
   m_Layer: 5
   m_Name: ClickerGameView
   m_TagString: Untagged
@@ -893,6 +895,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backButton: {fileID: 1881595235}
+  _graphicRaycaster: {fileID: 0}
+  onGraphicRaycastHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onBackButtonClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &786304362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786304359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6371f283a8688a84eb25f3c8edd92aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &786304363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786304359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1737fc4a6e324e4faeb46107515684f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onGameOverEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _score: 0
+  _currentTimeToFlow: 0
+  _graphicRaycaster: {fileID: 0}
 --- !u!1 &838874449
 GameObject:
   m_ObjectHideFlags: 0

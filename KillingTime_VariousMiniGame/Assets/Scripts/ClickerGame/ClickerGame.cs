@@ -54,28 +54,32 @@ public class ClickerGame : Game
 
     protected override void Running()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            List<RaycastResult> results = new();
-            PointerEventData pointerEventData = new PointerEventData(null);
-            pointerEventData.position = Input.mousePosition;
-            _graphicRaycaster.Raycast(pointerEventData, results);
+        // 유저의 입력
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    // 입력의 방식 - Raycast
+        //    List<RaycastResult> results = new();
+        //    PointerEventData pointerEventData = new PointerEventData(null);
+        //    pointerEventData.position = Input.mousePosition;
+        //    _graphicRaycaster.Raycast(pointerEventData, results);
 
-            if (results.Count > 0)
-            {
-                GameObject result = results[0].gameObject;
-                if (result.tag == "TouchPoint")
-                {
-                    _score++;
-                    int positionCount = _positions.Length;
-                    int randomIndex = Random.Range(0, positionCount);
-                    result.GetComponent<RectTransform>().anchoredPosition = _positions[randomIndex];
-                }
-            }
-        }
+        //    // 입력의 결과 - 충돌이 발생한 TouchPoint
+        //    if (results.Count > 0)
+        //    {
+        //        GameObject result = results[0].gameObject;
+        //        if (result.tag == "TouchPoint")
+        //        {
+        //            // 충돌의 결과 > 게임 로직
+        //            _score++;
+        //            int positionCount = _positions.Length;
+        //            int randomIndex = Random.Range(0, positionCount);
+        //            result.GetComponent<RectTransform>().anchoredPosition = _positions[randomIndex];
+        //        }
+        //    }
+        //}
     }
 
-    private Vector2 GetRandomPosition()
+    public Vector2 GetRandomPosition()
     {
         int positionCount = _positions.Length;
         int randomIndex = Random.Range(0, positionCount);

@@ -16,7 +16,6 @@ public class MiniGameListView : View
         _goGame1Button.onClick.AddListener(() =>
         {
             ViewManager.Show<ClickerGameView>();
-            GameManager.PlayGame<ClickerGame>();
         });
     }
 }

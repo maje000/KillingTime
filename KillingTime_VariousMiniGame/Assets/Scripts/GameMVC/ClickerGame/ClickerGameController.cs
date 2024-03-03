@@ -10,6 +10,8 @@ public class ClickerGameController : GameController
         viewer = clickerGameViewer;
 
         ClickerGame gameModel = new ClickerGame();
+
+
         model = gameModel;
     }
 }

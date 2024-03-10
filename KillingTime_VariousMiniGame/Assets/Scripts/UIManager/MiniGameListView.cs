@@ -12,7 +12,7 @@ public class MiniGameListView : UIPanel
     {
         base.Initialize();
 
-        _backButton.onClick.AddListener(() => UIManager.ShowLast());
+        _backButton.onClick.AddListener(() => UIManager.ShowLastPanel());
         _goGame1Button.onClick.AddListener(() => { });
     }
 }

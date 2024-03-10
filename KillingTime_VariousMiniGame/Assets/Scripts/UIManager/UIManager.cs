@@ -8,36 +8,54 @@ public class UIManager : MonoBehaviour
     private static UIManager s_instance;
 
     [SerializeField] private UIPanel _startPanel;
-    [SerializeField] private UIPanel[] _views;
-    [SerializeField] private UIPanel _currentView;
+    // Panels
+    [SerializeField] private UIPanel[] _panels;
+    [SerializeField] private UIPanel _currentPanel;
     [SerializeField] private readonly Stack<UIPanel> _history = new Stack<UIPanel>();
     [SerializeField] private Image _screenCurtain;
 
+    // Popups
+    [SerializeField] private UIPopup[] _popups;
+
     private void Awake() => s_instance = this;
+
     private void Start()
     {
-        for (int i = 0; i < _views.Length; i++)
-        {
-            _views[i].Initialize();
-            _views[i].Hide();
-        }
+        Initialize();
 
-        // 최초 초기화
         if (_startPanel != null)
         {
-            Show(_startPanel, false);
+            _startPanel.Show();
         }
         else
         {
-            Show(_views[0], false);
+            _panels[0].Show();
+        }
+
+        FadeIn();
+    }
+
+    public void Initialize()
+    {
+        foreach (UIPanel uiPanel in _panels)
+        {
+            uiPanel.Initialize();
+            uiPanel.Hide();
+        }
+
+        foreach (UIPopup uiPopup in _popups)
+        {
+            uiPopup.Initialize();
+            uiPopup.Close();
         }
     }
 
+    #region Panel
     public static T GetUIPanel<T>() where T : UIPanel
     {
-        for (int i = 0; i < s_instance._views.Length; i++)
+        for (int i = 0; i < s_instance._panels.Length; i++)
         { 
-            if (s_instance._views[i] is T tView)
+            if (s_instance._panels[i] is T tView)
             {
                 return tView;
             }
@@ -46,53 +64,70 @@ public class UIManager : MonoBehaviour
         return null;
     }
 
-    public static void Show<T>(bool remember = true) where T : UIPanel
+    public static void ShowPanel<T>(bool remember = true) where T : UIPanel
     {
-        for (int i = 0; i < s_instance._views.Length; i++)
+        for (int i = 0; i < s_instance._panels.Length; i++)
         {
-            if (s_instance._views[i] is T)
+            if (s_instance._panels[i] is T)
             {
-                if (s_instance._currentView != null)
+                if (s_instance._currentPanel != null)
                 {
                     if (remember)
                     {
-                        s_instance._history.Push(s_instance._currentView);
+                        s_instance._history.Push(s_instance._currentPanel);
                     }
 
-                    s_instance._currentView.Hide();
+                    s_instance._currentPanel.Hide();
                 }
 
-                s_instance._views[i].Show();
-                s_instance._currentView = s_instance._views[i];
+                s_instance._panels[i].Show();
+                s_instance._currentPanel = s_instance._panels[i];
                 return;
             }
         }
     }
 
-    public static void Show(UIPanel view, bool rememeber = true)
+    public static void ShowPanel(UIPanel view, bool rememeber = true)
     {
-        if (s_instance._currentView != null)
+        if (s_instance._currentPanel != null)
         {
             if (rememeber)
             {
-                s_instance._history.Push(s_instance._currentView);
+                s_instance._history.Push(s_instance._currentPanel);
             }
 
-            s_instance._currentView.Hide();
+            s_instance._currentPanel.Hide();
         }
 
         view.Show();
-        s_instance._currentView = view;
+        s_instance._currentPanel = view;
     }
 
-    public static void ShowLast()
+    public static void ShowLastPanel()
     {
         if (s_instance._history.Count != 0)
         {
-            Show(s_instance._history.Pop(), false);
+            ShowPanel(s_instance._history.Pop(), false);
         }
     }
+    #endregion
 
+    #region Popup
+    public static void ShowPopup<T>() where T : UIPopup
+    {
+        foreach (UIPopup popup in s_instance._popups)
+        {
+            if (popup is T)
+            {
+                popup.Popup();
+                break;
+            }
+        }
+    }
+    #endregion
+
+
+    #region Fade Effect
     Coroutine coFadeEffectHandle;
     /// <summary>
     /// 점점 흐려져서 화면을 덮음 안보임
@@ -126,6 +161,8 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator CoFadeOut(Color fadeOutColor, float duration = 1f)
     {
+        s_instance._screenCurtain.raycastTarget = true;
+
         _screenCurtain.color = fadeOutColor;
         Color currentColor = _screenCurtain.color;
         float currentTime = 0f;
@@ -134,11 +171,11 @@ public class UIManager : MonoBehaviour
         {
             currentColor = _screenCurtain.color;
             currentTime += Time.deltaTime;
-            currentColor.r = currentTime/duration;
+            currentColor.a = currentTime/duration;
 
-            if (currentColor.r < 0)
+            if (currentColor.a > 1f)
             {
-                currentColor.r = 0f;
+                currentColor.a = 1f;
                 _screenCurtain.color = currentColor;
                 break;
             }
@@ -162,11 +199,11 @@ public class UIManager : MonoBehaviour
         {
             currentColor = _screenCurtain.color;
             currentTime += Time.deltaTime;
-            currentColor.r = 1f - currentTime/duration;
+            currentColor.a = 1f - currentTime/duration;
 
-            if (currentColor.r >= 1)
+            if (currentColor.a <= 0f)
             {
-                currentColor.r = 1f;
+                currentColor.a = 0f;
                 _screenCurtain.color = currentColor;
                 break;
             }
@@ -176,6 +213,8 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
+        s_instance._screenCurtain.raycastTarget = false;
         yield return coFadeEffectHandle = null;
     }
+    #endregion
 }

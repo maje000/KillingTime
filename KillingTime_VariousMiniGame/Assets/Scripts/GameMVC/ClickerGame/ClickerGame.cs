@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ClickerGame : GameModel
 {
     [SerializeField] private int _score;
-    [SerializeField] private float _currentTimeToFlow;
+    //[SerializeField] private float _currentTimeToFlow;
     [SerializeField] private GraphicRaycaster _graphicRaycaster;
     Vector2[] _positions = new Vector2[] {
         new Vector3(-330f, -330*2f),
@@ -29,8 +29,8 @@ public class ClickerGame : GameModel
     public override void Initialize()
     {
         Debug.Log($"{this.GetType().Name} is On Initialize");
-        _currentTimeToFlow = 0f;
-
+        //_currentTimeToFlow = 0f;
+        
         base.Initialize();
     }
 

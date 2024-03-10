@@ -4,9 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class ViewManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    private static ViewManager s_instance;
+    private static UIManager s_instance;
 
     [SerializeField] private View _startingView;
     [SerializeField] private View[] _views;

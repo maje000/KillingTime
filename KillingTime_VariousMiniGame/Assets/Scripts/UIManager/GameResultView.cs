@@ -16,7 +16,6 @@ public class GameResultView : View
 
     private void OnClickCloseButton()
     {
-        GameManager.CloseGame();
-        ViewManager.ShowLast();
+        UIManager.ShowLast();
     }
 }

@@ -12,10 +12,9 @@ public class MiniGameListView : View
     {
         base.Initialize();
 
-        _backButton.onClick.AddListener(() => ViewManager.ShowLast());
+        _backButton.onClick.AddListener(() => UIManager.ShowLast());
         _goGame1Button.onClick.AddListener(() =>
         {
-            ViewManager.Show<ClickerGameView>();
         });
     }
 }

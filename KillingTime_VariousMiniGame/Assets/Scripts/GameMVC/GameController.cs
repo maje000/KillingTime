@@ -1,15 +1,13 @@
 using UnityEngine;
 
 /// <summary>
-/// Viewer¿Í ModelÀ» ¿¬°áÇØÁÖ¸ç ·ÎÁ÷ Ã³¸®
+/// Viewerï¿½ï¿½ Modelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 /// </summary>
 public abstract class GameController
 {
-    private GameViewer _gameViewer;
-    protected GameViewer viewer { set => _gameViewer = value; }
+    protected GameViewer viewer { get; set; }
 
-    private GameModel _gameModel;
-    protected GameModel model { set => _gameModel = value; }
+    protected GameModel model { get; set; }
 
     public abstract void Initialize();
 }

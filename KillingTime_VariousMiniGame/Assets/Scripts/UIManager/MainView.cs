@@ -11,6 +11,6 @@ public class MainView : View
     {
         base.Initialize();
 
-        _startButton.onClick.AddListener(() => ViewManager.Show<MiniGameListView>());
+        _startButton.onClick.AddListener(() => UIManager.Show<MiniGameListView>());
     }
 }

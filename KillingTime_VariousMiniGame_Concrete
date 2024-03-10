@@ -1,0 +1,17 @@
+MainContext
+- 중앙 관리로 해야할 것 같은데
+
+UIManager
+- Panel, Popup UI 관리
+	todo:: Popup UI 추가
+
+MVC 패턴으로 미니 게임 관리
+- GameViewer 시각적인 부분 관리
+- GameModel 게임의 데이터 및 모델 관리
+- GameController 
+- GameManager 전체 관리
+
+GameManager(singleton.instnace) : Monobehaviour or Not
+	GameController
+		GameViewer : Monobehaviour
+		GameModel

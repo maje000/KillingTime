@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameResultView : View
+public class GameResultView : UIPanel
 {
     [SerializeField] private Button closeButton;
 

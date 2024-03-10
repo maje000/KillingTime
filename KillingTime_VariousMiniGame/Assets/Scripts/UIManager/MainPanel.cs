@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainView : View
+public class MainPanel : UIPanel
 {
     [SerializeField] private Button _startButton;
 

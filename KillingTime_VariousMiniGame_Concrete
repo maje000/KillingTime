@@ -3,7 +3,8 @@ MainContext
 
 UIManager
 - Panel, Popup UI 관리
-	todo:: Popup UI 추가
+- Show(), Hide()
+	현재 화면에 나와있는 UI를 숨기거나 다시 보이게 함
 
 MVC 패턴으로 미니 게임 관리
 - GameViewer 시각적인 부분 관리
@@ -25,4 +26,18 @@ MainContext
  	GameManager Initialize
  - 화면 준비
  	UIManager.ShowFirstPanel();
+ - 출력
+ 	UIManager.FadeOutScreen();
 
+화면 구성
+- 최초 진입 페이지
+	start, exit 버튼
+- 게임 리스트 페이지
+	여러 게임들이 리스트 형식으로 유저에게 출력됨
+	리스트에 있는 게임을 클릭시 게임을 소개하는 Popup 출력 및 시작 버튼 제공
+	시작버튼을 통해  UIManager.Hide() > 게임이 끝나고 복귀 시 UIManager.Show()
+
+todo::
+1. MainContext를 추가해서 중앙 관리화 시키기
+	- 각종 Manager 초기화
+2. 게임 최초 진입시 시퀀스를 어떻게 구성할까...

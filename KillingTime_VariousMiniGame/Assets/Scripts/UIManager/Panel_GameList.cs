@@ -18,7 +18,7 @@ public class Panel_GameList : UIPanel
             {
                 button.onClick.AddListener(() => UIManager.ShowLastPanel());
             }
-            else if (buttonName == "GoGame1")
+            else if (buttonName == "Game1")
             {
                 button.onClick.AddListener(() => {});
             }

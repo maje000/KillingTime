@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class ClickerGameViewer : GameViewer
 {
-
+    public override void Initialize()
+    {
+        
+    }
 }

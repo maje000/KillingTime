@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// �������� ������ ������ + �ǽð����� ������ ������ �޾Ƶ帲
+/// 유저에게 인터페이스 제공
 /// </summary>
-public class GameViewer : MonoBehaviour
+public abstract class GameViewer : MonoBehaviour
 {
-    
+    public abstract void Initialize();
+    public virtual void Show() => gameObject.SetActive(true);
+    public virtual void Hide() => gameObject.SetActive(false);
 }

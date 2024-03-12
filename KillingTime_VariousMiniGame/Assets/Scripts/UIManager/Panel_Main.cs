@@ -18,7 +18,7 @@ public class Panel_Main : UIPanel
             string buttonName = button.name;
             if (buttonName == "Start")
             {
-                button.onClick.AddListener(() => UIManager.ShowPanel<GameListPanel>());
+                button.onClick.AddListener(() => UIManager.ShowPanel<Panel_GameList>());
             }
             else if (buttonName == "Exit")
             {

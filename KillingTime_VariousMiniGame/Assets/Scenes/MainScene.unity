@@ -1290,7 +1290,7 @@ GameObject:
   - component: {fileID: 838874450}
   - component: {fileID: 838874451}
   m_Layer: 5
-  m_Name: MiniGameListView
+  m_Name: GameListView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,9 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3a0b4ea4d633b4b8c1ab65e3ee3c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonHolder: {fileID: 0}
-  _backButton: {fileID: 742447891}
-  _goGame1Button: {fileID: 1414133030}
+  buttonHolder: {fileID: 1546755275}
 --- !u!1 &934536342
 GameObject:
   m_ObjectHideFlags: 0

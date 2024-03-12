@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MiniGameListView : UIPanel
+public class GameListPanel : UIPanel
 {
     [SerializeField] private Button _backButton;
     [SerializeField] private Button _goGame1Button;

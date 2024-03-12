@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIPanel[] _panels;
     [SerializeField] private UIPanel _currentPanel;
     [SerializeField] private readonly Stack<UIPanel> _history = new Stack<UIPanel>();
-    [SerializeField] private Image _screenCurtain;
 
     // Popups
     [SerializeField] private UIPopup[] _popups;
@@ -31,8 +30,6 @@ public class UIManager : MonoBehaviour
         {
             _panels[0].Show();
         }
-
-        FadeIn();
     }
 
     public void Initialize()
@@ -123,98 +120,6 @@ public class UIManager : MonoBehaviour
                 break;
             }
         }
-    }
-    #endregion
-
-
-    #region Fade Effect
-    Coroutine coFadeEffectHandle;
-    /// <summary>
-    /// 점점 흐려져서 화면을 덮음 안보임
-    /// </summary>
-    public static void FadeOut()
-    {
-        // 화면을 점점 덮는 연출 시작
-        if (s_instance.coFadeEffectHandle != null)
-        {
-            s_instance.StopCoroutine(s_instance.coFadeEffectHandle);
-            s_instance.coFadeEffectHandle = null;
-        }
-
-        s_instance.coFadeEffectHandle = s_instance.StartCoroutine(s_instance.CoFadeOut(Color.white));
-    }
-
-    /// <summary>
-    /// 덮인 화면이 점점 나타남
-    /// </summary>
-    public static void FadeIn()
-    {
-        // 화면을 점점 여는 연출 시작
-        if (s_instance.coFadeEffectHandle != null)
-        {
-            s_instance.StopCoroutine(s_instance.coFadeEffectHandle);
-            s_instance.coFadeEffectHandle = null;
-        }
-
-        s_instance.coFadeEffectHandle = s_instance.StartCoroutine(s_instance.CoFadeIn(Color.white));
-    }
-
-    private IEnumerator CoFadeOut(Color fadeOutColor, float duration = 1f)
-    {
-        s_instance._screenCurtain.raycastTarget = true;
-
-        _screenCurtain.color = fadeOutColor;
-        Color currentColor = _screenCurtain.color;
-        float currentTime = 0f;
-
-        while(true)
-        {
-            currentColor = _screenCurtain.color;
-            currentTime += Time.deltaTime;
-            currentColor.a = currentTime/duration;
-
-            if (currentColor.a > 1f)
-            {
-                currentColor.a = 1f;
-                _screenCurtain.color = currentColor;
-                break;
-            }
-
-            _screenCurtain.color = currentColor;
-
-            yield return null;
-        }
-
-        yield return coFadeEffectHandle = null;
-    }
-
-    private IEnumerator CoFadeIn(Color fadeInColor, float duration = 1f)
-    {
-        fadeInColor.r = 1f;
-        _screenCurtain.color = fadeInColor;
-        Color currentColor = _screenCurtain.color;
-        float currentTime = 0f;
-
-        while(true)
-        {
-            currentColor = _screenCurtain.color;
-            currentTime += Time.deltaTime;
-            currentColor.a = 1f - currentTime/duration;
-
-            if (currentColor.a <= 0f)
-            {
-                currentColor.a = 0f;
-                _screenCurtain.color = currentColor;
-                break;
-            }
-
-            _screenCurtain.color = currentColor;
-
-            yield return null;
-        }
-
-        s_instance._screenCurtain.raycastTarget = false;
-        yield return coFadeEffectHandle = null;
     }
     #endregion
 }

@@ -1059,6 +1059,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f598872faca0ea549a9af9befdff4e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 751418695}
+  - {fileID: 838874451}
+  popups:
+  - {fileID: 1930031271}
 --- !u!1 &482130795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,7 +1358,7 @@ GameObject:
   - component: {fileID: 751418694}
   - component: {fileID: 751418695}
   m_Layer: 5
-  m_Name: MainPanel
+  m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

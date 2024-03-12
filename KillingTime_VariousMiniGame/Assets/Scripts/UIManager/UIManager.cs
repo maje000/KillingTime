@@ -20,22 +20,45 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
+        //Initialize();
     }
 
-    public void Initialize()
+    public static void Initialize()
     {
-        foreach (UIPanel uiPanel in _panels)
+        foreach (UIPanel uiPanel in s_instance._panels)
         {
             uiPanel.Initialize();
             uiPanel.Hide();
         }
 
-        foreach (UIPopup uiPopup in _popups)
+        foreach (UIPopup uiPopup in s_instance._popups)
         {
             uiPopup.Initialize();
             uiPopup.Close();
         }
+    }
+
+    public static void Initialize(params UIPanel[] panels)
+    {
+        foreach(UIPanel panel in panels)
+        {
+            panel.Initialize();
+            panel.Hide();
+        }
+
+        s_instance._panels = panels;
+        s_instance._startPanel = panels[0];
+    }
+
+    public static void Initialize(params UIPopup[] popups)
+    {
+         foreach(UIPopup popup in popups)
+        {
+            popup.Initialize();
+            popup.Close();
+        }
+
+        s_instance._popups = popups;
     }
 
     #region Panel

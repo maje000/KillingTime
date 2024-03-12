@@ -10,7 +10,6 @@ public class Panel_GameList : UIPanel
         base.Initialize();
 
         Button[] buttons = GetButtons();
-
         foreach (Button button in buttons)
         {
             string buttonName = button.name;
@@ -20,7 +19,13 @@ public class Panel_GameList : UIPanel
             }
             else if (buttonName == "Game1")
             {
-                button.onClick.AddListener(() => {});
+                button.onClick.AddListener(() => SceneLoader.Instance.LoadScene("Game1Scene"));
+                continue;
+            }
+            else if (buttonName == "Game2")
+            {
+                button.onClick.AddListener(() => SceneLoader.Instance.LoadScene("Game2Scene"));
+                continue;
             }
         }
     }

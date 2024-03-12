@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Panel_Game2 : UIPanel
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Initialize()
     {
+        base.Initialize();
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Button[] buttons = GetButtons();   
+        foreach (Button button in buttons)
+        {
+            string buttonName = button.name;
+            if (buttonName == "Back")
+            {
+                button.onClick.AddListener(() => SceneLoader.Instance.LoadScene("MainScene"));
+            }
+        }
     }
 }

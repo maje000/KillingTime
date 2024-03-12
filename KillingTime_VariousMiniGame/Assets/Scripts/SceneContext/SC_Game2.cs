@@ -1,28 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SC_Game2 : SceneContext
 {
+    [SerializeField] private UIPanel[] panels;
+
     public override void Initialize()
     {
-        throw new System.NotImplementedException();
+        if (panels != null)
+        {
+            UIManager.Initialize(panels);    
+        }
     }
 
     public override void SceneStart()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UIManager.ShowPanel<Panel_Game2>();
     }
 }

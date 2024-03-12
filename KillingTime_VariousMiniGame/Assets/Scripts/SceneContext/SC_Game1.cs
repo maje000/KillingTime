@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class SC_Game1 : SceneContext
 {
+    [SerializeField] private UIPanel[] panels;
+
     public override void Initialize()
     {
-        throw new System.NotImplementedException();
+        UIManager.Initialize(panels);
     }
 
     public override void SceneStart()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UIManager.ShowPanel<Panel_Game1>();
     }
 }

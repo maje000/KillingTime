@@ -295,6 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e6115873a76403fb464b07ee0b8845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1603761063}
 --- !u!1 &801671680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,8 +1005,8 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 771217736}
   - {fileID: 225113713}
   - {fileID: 1940106031}
-  - {fileID: 771217736}
   - {fileID: 2142224373}
   - {fileID: 801671683}

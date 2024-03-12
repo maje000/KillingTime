@@ -295,6 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab5280ef42ed4290b6e2997cf21f3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1957170508}
 --- !u!1 &622384330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,8 +1005,8 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 582510659}
   - {fileID: 422918286}
   - {fileID: 622384332}
-  - {fileID: 582510659}
   - {fileID: 874577167}
   - {fileID: 1844939868}

@@ -1,15 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class IntroSceneContext : MonoBehaviour
+public class SC_Intro : SceneContext
 {
     Coroutine coSceneInit;
 
-    public void Initialize()
+    public override void Initialize()
     {
 
+    }
+
+    public override void SceneStart()
+    {
+        
     }
 
     private void Start()

@@ -21,15 +21,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Initialize();
-
-        if (_startPanel != null)
-        {
-            _startPanel.Show();
-        }
-        else
-        {
-            _panels[0].Show();
-        }
     }
 
     public void Initialize()
@@ -82,6 +73,8 @@ public class UIManager : MonoBehaviour
                 return;
             }
         }
+
+        Debug.Log($"\"{typeof(T).Name}\" 패널이 존재하지 않습니다.");
     }
 
     public static void ShowPanel(UIPanel view, bool rememeber = true)

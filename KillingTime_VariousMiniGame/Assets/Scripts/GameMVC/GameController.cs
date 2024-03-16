@@ -10,4 +10,5 @@ public abstract class GameController
     protected GameModel model { get; set; }
 
     public abstract void Initialize();
+    public abstract void Start();
 }

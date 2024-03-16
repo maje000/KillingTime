@@ -29,6 +29,9 @@ MainContext
  - 출력
  	UIManager.FadeOutScreen();
 
+SceneLoader를 이용하여 씬 전환
+- todo::SceneLoader에서 Scene의 구성을 준비하는 시퀀스 중 대기 상태 구현 필요
+
 화면 구성
 - 최초 진입 페이지
 	start, exit 버튼
@@ -38,6 +41,4 @@ MainContext
 	시작버튼을 통해  UIManager.Hide() > 게임이 끝나고 복귀 시 UIManager.Show()
 
 todo::
-1. MainContext를 추가해서 중앙 관리화 시키기
-	- 각종 Manager 초기화
-2. 게임 최초 진입시 시퀀스를 어떻게 구성할까...
+1. MVC Pattern이 게임에서 어떤 데이터를 담고 있는지 예제를 통한 학습 필요

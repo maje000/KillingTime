@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SC_Main : SceneContext
@@ -14,6 +15,11 @@ public class SC_Main : SceneContext
     public override void StartScene()
     {
         UIManager.ShowPanel<Panel_Main>();
+    }
+
+    public override IEnumerator ClearScene()
+    {
+        throw new System.NotImplementedException();
     }
 
     /// <summary>

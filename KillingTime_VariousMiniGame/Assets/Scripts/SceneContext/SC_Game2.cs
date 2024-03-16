@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class SC_Game2 : SceneContext
 {
     [SerializeField] private UIPanel[] panels;
+
 
     public override void Initialize()
     {
@@ -15,5 +17,10 @@ public class SC_Game2 : SceneContext
     public override void StartScene()
     {
         UIManager.ShowPanel<Panel_Game2>();
+    }
+    
+    public override IEnumerator ClearScene()
+    {
+        throw new System.NotImplementedException();
     }
 }

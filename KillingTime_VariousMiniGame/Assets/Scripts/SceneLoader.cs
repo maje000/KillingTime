@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class SceneLoader : MonoBehaviour
             instance = value;
         }
     }
+
+    private IEnumerator sceneClearEvent;
+    public IEnumerator SetSceneClearEvent { set => sceneClearEvent = value; }
 
     [SerializeField]
     private CanvasGroup sceneLoaderCanvasGroup;
@@ -76,6 +80,14 @@ public class SceneLoader : MonoBehaviour
         while (!op.isDone)
         {
             yield return null;
+
+            if (sceneClearEvent != null)
+            {
+                yield return StartCoroutine(sceneClearEvent);
+                sceneClearEvent = null;
+            }
+
+
             timer += Time.unscaledDeltaTime;
 
             if (op.progress < 0.9f)

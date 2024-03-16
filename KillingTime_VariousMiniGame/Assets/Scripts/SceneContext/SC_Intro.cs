@@ -48,4 +48,9 @@ public class SC_Intro : SceneContext
             SceneLoader.Instance.LoadScene("MainScene");
         }
     }
+
+    public override IEnumerator ClearScene()
+    {
+        throw new System.NotImplementedException();
+    }
 }

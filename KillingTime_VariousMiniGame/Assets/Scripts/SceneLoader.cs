@@ -105,7 +105,7 @@ public class SceneLoader : MonoBehaviour
         {
             SceneContext[] sc = FindObjectsOfType<SceneContext>();
             FindObjectOfType<SceneContext>().Initialize();
-            FindObjectOfType<SceneContext>().SceneStart();
+            FindObjectOfType<SceneContext>().StartScene();
             StartCoroutine(Fade(false));
             SceneManager.sceneLoaded -= LoadSceneEnd;
         }

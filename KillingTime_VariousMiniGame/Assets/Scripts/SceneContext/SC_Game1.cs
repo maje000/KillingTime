@@ -5,7 +5,7 @@ using UnityEngine;
 public class SC_Game1 : SceneContext
 {
     [SerializeField] private UIPanel[] panels;
-    ClickerGameController controller;
+    ClickerGameController controller = new ClickerGameController();
 
     public override void Initialize()
     {
@@ -13,7 +13,7 @@ public class SC_Game1 : SceneContext
         controller.Initialize();
     }
 
-    public override void SceneStart()
+    public override void StartScene()
     {
         UIManager.ShowPanel<Panel_Game1>();
         controller.Start();

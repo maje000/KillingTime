@@ -12,7 +12,7 @@ public class SC_Game2 : SceneContext
         }
     }
 
-    public override void SceneStart()
+    public override void StartScene()
     {
         UIManager.ShowPanel<Panel_Game2>();
     }

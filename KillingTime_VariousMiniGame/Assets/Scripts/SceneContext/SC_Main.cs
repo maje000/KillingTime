@@ -11,7 +11,7 @@ public class SC_Main : SceneContext
         UIManager.Initialize(popups);
     }
 
-    public override void SceneStart()
+    public override void StartScene()
     {
         UIManager.ShowPanel<Panel_Main>();
     }

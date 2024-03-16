@@ -10,7 +10,7 @@ public class SC_Intro : SceneContext
 
     }
 
-    public override void SceneStart()
+    public override void StartScene()
     {
         
     }

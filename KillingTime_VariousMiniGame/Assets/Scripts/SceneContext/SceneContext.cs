@@ -5,5 +5,6 @@ using UnityEngine;
 public abstract class SceneContext : MonoBehaviour
 {
     public abstract void Initialize();
-    public abstract void SceneStart();
+    public abstract void StartScene();
+    public abstract void ClearScene();
 }

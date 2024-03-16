@@ -11,4 +11,5 @@ public abstract class GameController
 
     public abstract void Initialize();
     public abstract void Start();
+    public abstract void Clear();
 }

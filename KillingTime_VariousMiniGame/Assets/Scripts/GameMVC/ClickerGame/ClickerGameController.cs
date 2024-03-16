@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class ClickerGameController : GameController
@@ -17,5 +18,10 @@ public class ClickerGameController : GameController
     public override void Start()
     {
 
+    }
+
+     public override void Clear()
+    {
+        
     }
 }

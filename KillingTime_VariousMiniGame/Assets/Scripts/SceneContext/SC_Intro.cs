@@ -49,7 +49,7 @@ public class SC_Intro : SceneContext
         }
     }
 
-    public override IEnumerator ClearScene()
+    public override IEnumerable ClearScene()
     {
         throw new System.NotImplementedException();
     }

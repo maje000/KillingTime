@@ -11,7 +11,7 @@ public class SC_Game1 : SceneContext
     {
         UIManager.Initialize(panels);
         controller.Initialize();
-        SceneLoader.Instance.SetSceneClearEvent = ClearScene();
+        SceneLoader.Instance.SetSceneClearEvent = ClearScene().GetEnumerator();
     }
 
     public override void StartScene()
@@ -20,9 +20,10 @@ public class SC_Game1 : SceneContext
         controller.Start();
     }
 
-    public override IEnumerator ClearScene()
+    public override IEnumerable ClearScene() 
     {
+        Debug.Log("On SC_Game1 ClearScene");
         controller.Clear();
-        throw new System.NotImplementedException();
+        yield return null;
     }
 }

@@ -17,7 +17,7 @@ public class SC_Main : SceneContext
         UIManager.ShowPanel<Panel_Main>();
     }
 
-    public override IEnumerator ClearScene()
+    public override IEnumerable ClearScene()
     {
         throw new System.NotImplementedException();
     }

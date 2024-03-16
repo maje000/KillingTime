@@ -6,5 +6,5 @@ public abstract class SceneContext : MonoBehaviour
 {
     public abstract void Initialize();
     public abstract void StartScene();
-    public abstract IEnumerator ClearScene();
+    public abstract IEnumerable ClearScene();
 }

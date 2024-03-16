@@ -18,9 +18,9 @@ public class SC_Game2 : SceneContext
     {
         UIManager.ShowPanel<Panel_Game2>();
     }
-    
-    public override IEnumerator ClearScene()
+
+    public override IEnumerable ClearScene()
     {
-        throw new System.NotImplementedException();
+        yield return null;
     }
 }

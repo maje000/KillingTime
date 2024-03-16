@@ -22,7 +22,6 @@ public class SC_Game1 : SceneContext
 
     public override IEnumerable ClearScene() 
     {
-        Debug.Log("On SC_Game1 ClearScene");
         controller.Clear();
         yield return null;
     }

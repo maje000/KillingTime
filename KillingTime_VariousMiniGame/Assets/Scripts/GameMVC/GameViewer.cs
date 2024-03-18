@@ -9,6 +9,8 @@ using UnityEngine;
 public abstract class GameViewer : MonoBehaviour
 {
     public abstract void Initialize();
+    public delegate void viewerEvent();
+    public viewerEvent tic;
 
     public static T GetViewer<T>() where T : GameViewer
     {

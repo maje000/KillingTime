@@ -12,7 +12,11 @@ public class ClickerGameController : GameController
     public override void Initialize()
     {
         viewer = GameViewer.GetViewer<ClickerGameViewer>();
+        viewer.Initialize();
+        viewer.tic = Tic;
+
         model = new ClickerGame();
+        model.Initialize();
     }
 
     public override void Start()
@@ -23,5 +27,10 @@ public class ClickerGameController : GameController
      public override void Clear()
     {
         
+    }
+
+    private void Tic()
+    {
+        Debug.Log(Time.deltaTime);
     }
 }

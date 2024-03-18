@@ -10,14 +10,23 @@ public class ClickerGameViewer : GameViewer
 
     public override void Initialize()
     {
-        
+        graphicRaycaster = GetComponent<GraphicRaycaster>();
+        if (graphicRaycaster == null)
+        {
+            graphicRaycaster = gameObject.AddComponent<GraphicRaycaster>();
+        }
     }
 
     public void Update()
     {
+        if (tic != null)
+        {
+            tic();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
-
+            
         }
     }
 }

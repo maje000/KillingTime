@@ -2,26 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClickerGameController : GameController
 {
+    ClickerGameViewer clickerGameViewer;
+    ClickerGame clickerGame;
+
+    float flowTime;
+    WaitForSeconds waitOneSecond;
+
     /// <summary>
     /// 데이터 초기화 + 초기 화면 구성
     /// Viewer는 미리 생성이 필요함...
     /// </summary>
     public override void Initialize()
     {
-        viewer = GameViewer.GetViewer<ClickerGameViewer>();
-        viewer.Initialize();
-        viewer.tic = Tic;
+        clickerGame = new ClickerGame();
+        clickerGame.Initialize();
 
-        model = new ClickerGame();
-        model.Initialize();
+        clickerGameViewer = GameViewer.GetViewer<ClickerGameViewer>();
+        clickerGameViewer.Initialize();
+        clickerGameViewer.tic += Tic;
+        clickerGameViewer.onStartButtonClick = Start;
+        clickerGameViewer.onTouchPointClick = OnTouchPointClick;
+
+        flowTime = 0f;
+        waitOneSecond = new WaitForSeconds(1f);
     }
 
     public override void Start()
     {
-
+        Debug.Log("start");
+        // 게임 StartButton을 주고
+        // 버튼을 누르면 3, 2, 1 카운트를 하고 게임 시작
+        clickerGameViewer.StartCoroutine(coGameStart());
     }
 
      public override void Clear()
@@ -31,6 +46,40 @@ public class ClickerGameController : GameController
 
     private void Tic()
     {
-        Debug.Log(Time.deltaTime);
+        if (clickerGameViewer.gameState == ClickerGameViewer.GameState.Play)
+        {
+            flowTime += Time.deltaTime;
+
+            if (flowTime > 30f)
+            {
+                flowTime = 0;
+                clickerGameViewer.GameOver();
+            }
+        }
+    }
+
+    private IEnumerator coGameStart()
+    {
+        yield return null;
+        int countdown = 4;
+
+        while(true)
+        {
+            countdown--;
+            clickerGameViewer.countdown = countdown;
+
+            if (countdown == -1) break;
+
+            yield return waitOneSecond;
+        }
+
+        clickerGameViewer.GameStart();
+    }
+
+    private void OnTouchPointClick()
+    {
+        Debug.Log("touchtouch");
+        clickerGame.touchPoint.anchoredPosition = clickerGame.GetRandomPosition();
+        clickerGame.score++;
     }
 }

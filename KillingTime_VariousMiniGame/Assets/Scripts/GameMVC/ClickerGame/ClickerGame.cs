@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class ClickerGame : GameModel
 {
-    [SerializeField] private int score;
+    public RectTransform touchPoint;
+    public int score;
+
     private Vector2[,] positions = new Vector2[,] {
         {new Vector3(-330f, -330*2f),
         new Vector3(-330f, -330*1f),
@@ -24,12 +26,17 @@ public class ClickerGame : GameModel
         new Vector3(330f, -330*2f),}
     };
 
+    public override void Initialize()
+    {
+        touchPoint = GameObject.FindGameObjectWithTag("TouchPoint").GetComponent<RectTransform>();
+    }
+
     public Vector2 GetRandomPosition()
     {
         int random = Random.Range(0, positions.Length);
 
-        int randomRow = Random.Range(0, random / positions.Rank);
-        int randomColumn = Random.Range(0, random % positions.Rank);
+        int randomRow = Random.Range(0, random / 5);
+        int randomColumn = Random.Range(0, random % 5);
         return positions[randomRow, randomColumn];
     }
 }

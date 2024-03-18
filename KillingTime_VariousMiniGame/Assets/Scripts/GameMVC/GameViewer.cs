@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// 유저에게 인터페이스 제공
@@ -10,7 +11,7 @@ public abstract class GameViewer : MonoBehaviour
 {
     public abstract void Initialize();
     public delegate void viewerEvent();
-    public viewerEvent tic;
+    public UnityAction tic;
 
     public static T GetViewer<T>() where T : GameViewer
     {

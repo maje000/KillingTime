@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -59,10 +60,74 @@ public class ClickerGameViewer : GameViewer
     {
         set => scoreText.text = string.Format(SCORE_TEXT, value);
     }
+    private Transform _resultBoard;
+    private TMPro.TextMeshProUGUI _resultBoard_socreText;
+    public int resultBoard_score
+    {
+        set
+        {
+            _resultBoard_socreText.text = string.Format(SCORE_TEXT, value);
+        }
+    }
+    private Button _resultBoard_exitButton;
+    public UnityAction onExitButtonClickInResultBoard
+    {
+        set
+        {
+            _resultBoard_exitButton.onClick.RemoveAllListeners();
+            _resultBoard_exitButton.onClick.AddListener(() =>
+            {
+                value.Invoke();
+            });
+        }
+    }
+    private Button _resultBoard_restartButton;
+    public UnityAction onRestartButtonClickInResultBoard
+    {
+        set
+        {
+            _resultBoard_restartButton.onClick.RemoveAllListeners();
+            _resultBoard_restartButton.onClick.AddListener(() =>
+            {
+                value.Invoke();
+            });
+        }
+    }
 
     List<RaycastResult> touchResults;
     GameState currentGameState;
-    public GameState gameState { get => currentGameState; }
+    public GameState gameState { 
+        get => currentGameState; 
+        set
+        {
+            GameState state = value;
+            if (state == GameState.None)
+            {
+                startButton.gameObject.SetActive(true);
+
+                touchPoint.gameObject.SetActive(false);
+                scoreText.gameObject.SetActive(false);
+                _resultBoard.gameObject.SetActive(false);
+            }
+            else if (state == GameState.Play)
+            {
+                touchPoint.gameObject.SetActive(true);
+                scoreText.gameObject.SetActive(true);
+                
+                _resultBoard.gameObject.SetActive(false);
+            }
+            else if (state == GameState.GameOver)
+            {
+                _resultBoard.gameObject.SetActive(true);
+            }
+            else if (state == GameState.GameClear)
+            {
+
+            }
+
+            currentGameState = state;
+        }
+    }
 
     public override void Initialize()
     {
@@ -91,12 +156,21 @@ public class ClickerGameViewer : GameViewer
             {
                 scoreText = child.GetComponent<TMPro.TextMeshProUGUI>();
             }
+            else if (child.name == "ResultBoard")
+            {
+                _resultBoard = child;
+                ClickerGame_ResultBoard resultBoard = _resultBoard.GetComponent<ClickerGame_ResultBoard>();
+                _resultBoard_socreText = resultBoard.scoreText;
+                _resultBoard_exitButton = resultBoard.exitButton;
+                _resultBoard_restartButton = resultBoard.restartButton;
+            }
         }
 
         touchPoint.gameObject.SetActive(false);
         startButton.gameObject.SetActive(true);
         countdownText.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(false);
+        _resultBoard.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -128,15 +202,5 @@ public class ClickerGameViewer : GameViewer
         }
     }
 
-    public void GameStart()
-    {
-        currentGameState = GameState.Play;
-        touchPoint.gameObject.SetActive(true);
-        scoreText.gameObject.SetActive(true);
-    }
-
-    public void GameOver()
-    {
-        currentGameState = GameState.GameOver;
-    }
+    
 }

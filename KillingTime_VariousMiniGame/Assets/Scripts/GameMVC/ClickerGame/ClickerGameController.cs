@@ -26,6 +26,8 @@ public class ClickerGameController : GameController
         clickerGameViewer.tic += Tic;
         clickerGameViewer.onStartButtonClick = Start;
         clickerGameViewer.onTouchPointClick = OnTouchPointClick;
+        clickerGameViewer.onExitButtonClickInResultBoard = ExitGame;
+        clickerGameViewer.onRestartButtonClickInResultBoard = GameRestart;
 
         flowTime = 0f;
         waitOneSecond = new WaitForSeconds(1f);
@@ -33,7 +35,6 @@ public class ClickerGameController : GameController
 
     public override void Start()
     {
-        Debug.Log("start");
         // 게임 StartButton을 주고
         // 버튼을 누르면 3, 2, 1 카운트를 하고 게임 시작
         clickerGameViewer.StartCoroutine(coGameStart());
@@ -53,7 +54,8 @@ public class ClickerGameController : GameController
             if (flowTime > 30f)
             {
                 flowTime = 0;
-                clickerGameViewer.GameOver();
+                clickerGameViewer.resultBoard_score = clickerGame.score;
+                clickerGameViewer.gameState = ClickerGameViewer.GameState.GameOver;
             }
         }
     }
@@ -73,7 +75,7 @@ public class ClickerGameController : GameController
             yield return waitOneSecond;
         }
 
-        clickerGameViewer.GameStart();
+        clickerGameViewer.gameState = ClickerGameViewer.GameState.Play;
     }
 
     private void OnTouchPointClick()
@@ -83,5 +85,17 @@ public class ClickerGameController : GameController
         clickerGame.score++;
 
         clickerGameViewer.score = clickerGame.score;
+    }
+
+    private void ExitGame()
+    {
+        SceneLoader.Instance.LoadScene("MainScene");
+    }
+
+    private void GameRestart()
+    {
+        clickerGame.score = 0;
+        clickerGameViewer.score = 0;
+        clickerGameViewer.gameState = ClickerGameViewer.GameState.None;
     }
 }

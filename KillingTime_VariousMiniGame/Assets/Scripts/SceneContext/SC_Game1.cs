@@ -17,7 +17,6 @@ public class SC_Game1 : SceneContext
     public override void StartScene()
     {
         UIManager.ShowPanel<Panel_Game1>();
-        //controller.Start();
     }
 
     public override IEnumerable ClearScene() 

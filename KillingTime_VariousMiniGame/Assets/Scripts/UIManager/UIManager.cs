@@ -18,11 +18,6 @@ public class UIManager : MonoBehaviour
 
     private void Awake() => s_instance = this;
 
-    private void Start()
-    {
-        //Initialize();
-    }
-
     public static void Initialize()
     {
         foreach (UIPanel uiPanel in s_instance._panels)

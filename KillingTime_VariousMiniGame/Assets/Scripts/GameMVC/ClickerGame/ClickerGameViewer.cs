@@ -19,9 +19,9 @@ public class ClickerGameViewer : GameViewer
     [SerializeField] private Canvas canvas;
     private GraphicRaycaster graphicRaycaster;
 
-    [SerializeField] private Transform touchPoint;
+    private Transform touchPoint;
     public UnityAction onTouchPointClick;
-    [SerializeField] private Button startButton;
+    private Button startButton;
     public UnityAction onStartButtonClick
     {
         set
@@ -34,7 +34,7 @@ public class ClickerGameViewer : GameViewer
             });
         }
     }
-    [SerializeField] private TMPro.TextMeshProUGUI countdownText;
+    private TMPro.TextMeshProUGUI countdownText;
     public int countdown 
     { 
         set
@@ -53,6 +53,12 @@ public class ClickerGameViewer : GameViewer
             }
         }
     }
+    private TMPro.TextMeshProUGUI scoreText;
+    private const string SCORE_TEXT = "score: {0}";
+    public int score
+    {
+        set => scoreText.text = string.Format(SCORE_TEXT, value);
+    }
 
     List<RaycastResult> touchResults;
     GameState currentGameState;
@@ -64,7 +70,7 @@ public class ClickerGameViewer : GameViewer
         touchResults = new List<RaycastResult>();
         currentGameState = GameState.None;
 
-        // canvas º” UI √£±‚
+        // canvas ÏÜç UI Ï∞æÍ∏∞
         int canvasChildCount = canvas.transform.childCount;
         for (int i = 0; i < canvasChildCount; i++)
         {
@@ -81,11 +87,16 @@ public class ClickerGameViewer : GameViewer
             {
                 countdownText = child.GetComponent<TMPro.TextMeshProUGUI>();
             }
+            else if (child.name == "ScoreText")
+            {
+                scoreText = child.GetComponent<TMPro.TextMeshProUGUI>();
+            }
         }
 
         touchPoint.gameObject.SetActive(false);
         startButton.gameObject.SetActive(true);
         countdownText.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -108,7 +119,6 @@ public class ClickerGameViewer : GameViewer
                 {
                     if (ReferenceEquals(result.gameObject.transform, touchPoint))
                     {
-                        // ¿Ã∫•∆Æ πﬂª˝
                         onTouchPointClick?.Invoke();
                     }
                 }
@@ -122,6 +132,7 @@ public class ClickerGameViewer : GameViewer
     {
         currentGameState = GameState.Play;
         touchPoint.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(true);
     }
 
     public void GameOver()

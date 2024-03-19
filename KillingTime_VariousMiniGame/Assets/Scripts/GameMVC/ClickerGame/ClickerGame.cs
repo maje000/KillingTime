@@ -35,8 +35,8 @@ public class ClickerGame : GameModel
     {
         int random = Random.Range(0, positions.Length);
 
-        int randomRow = Random.Range(0, random / 5);
-        int randomColumn = Random.Range(0, random % 5);
+        int randomRow = Random.Range(0, 3);
+        int randomColumn = Random.Range(0, 5);
         return positions[randomRow, randomColumn];
     }
 }

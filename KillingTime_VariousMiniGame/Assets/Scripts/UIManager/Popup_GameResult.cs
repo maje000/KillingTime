@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Popup_GameResult : UIPopup
 {
-    [SerializeField] private Button closeButton;
-
     public override void Initialize()
     {
         Button[] buttons = GetButtons();
@@ -15,23 +13,24 @@ public class Popup_GameResult : UIPopup
         {
             if (button.name == "Close")
             {
-                UIManager.ShowLastPanel();
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(OnClickCloseButton);
             }
         }
     }
 
     public override void Popup()
     {
-        throw new System.NotImplementedException();
+        this.gameObject.SetActive(true);
     }
 
     public override void Close()
     {
-        throw new System.NotImplementedException();
+        this.gameObject.SetActive(false);
     }
 
     private void OnClickCloseButton()
     {
-        UIManager.ShowLastPanel();
+        SceneLoader.Instance.LoadScene("MainScene");
     }
 }

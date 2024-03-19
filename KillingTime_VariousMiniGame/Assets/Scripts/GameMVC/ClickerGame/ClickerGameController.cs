@@ -81,5 +81,7 @@ public class ClickerGameController : GameController
         Debug.Log("touchtouch");
         clickerGame.touchPoint.anchoredPosition = clickerGame.GetRandomPosition();
         clickerGame.score++;
+
+        clickerGameViewer.score = clickerGame.score;
     }
 }

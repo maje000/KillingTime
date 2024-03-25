@@ -37,7 +37,7 @@ public class SC_Intro : SceneContext
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             if (coSceneInit != null)
             {
